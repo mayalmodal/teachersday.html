@@ -1,0 +1,420 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Teacher's Day | Sir Randy Bello</title>
+
+<style>
+:root {
+    --bg: #18040b;
+    --card: #390b1b;
+    --accent: #ff668e;
+    --text: #fff0f4;
+    --paper: #fff0e9;
+    --ink: #651c36;
+}
+
+body.light {
+    --bg: #fff0f4;
+    --card: #ffe0e8;
+    --accent: #a51d4b;
+    --text: #54142b;
+    --paper: #fffaf5;
+    --ink: #651c36;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    padding: 25px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Georgia, serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top, #68152d 0%, var(--bg) 65%);
+    transition: background 0.7s, color 0.7s;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    color: var(--accent);
+    font-size: clamp(30px, 7vw, 48px);
+    text-shadow: 0 0 18px var(--accent);
+    animation: fadeIn 1.5s ease;
+}
+
+.subtitle {
+    margin: 12px 0 25px;
+    line-height: 1.7;
+}
+
+.theme-btn, .open-btn {
+    border: 1px solid var(--accent);
+    border-radius: 30px;
+    padding: 11px 20px;
+    background: var(--card);
+    color: var(--text);
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.theme-btn:hover, .open-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 20px var(--accent);
+}
+
+.theme-btn {
+    margin-bottom: 25px;
+}
+
+.envelope {
+    width: min(100%, 340px);
+    height: 220px;
+    margin: 25px auto;
+    position: relative;
+    cursor: pointer;
+    perspective: 1000px;
+    filter: drop-shadow(0 0 15px #a51d4b);
+}
+
+.envelope-body {
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    background: linear-gradient(140deg, #a51d4b, #4d071d);
+    border: 2px solid #ff9bb7;
+}
+
+.envelope-body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg,
+        transparent 49.5%, #e84d79 50%, transparent 51%);
+}
+
+.flap {
+    position: absolute;
+    inset: 0;
+    background: #bd2856;
+    clip-path: polygon(0 0, 100% 0, 50% 58%);
+    transform-origin: top;
+    transition: transform 0.9s ease;
+    z-index: 5;
+    border-radius: 6px;
+}
+
+.heart-seal {
+    position: absolute;
+    top: 77px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 6;
+    font-size: 45px;
+    filter: drop-shadow(0 0 10px #ff8eaf);
+    animation: heartbeat 1.4s infinite;
+    transition: opacity 0.4s;
+}
+
+.letter {
+    position: absolute;
+    left: 5%;
+    width: 90%;
+    bottom: 5px;
+    height: 190px;
+    padding: 20px;
+    border-radius: 8px;
+    background: var(--paper);
+    color: var(--ink);
+    overflow: hidden;
+    opacity: 0;
+    transition: all 1s ease;
+    z-index: 2;
+    text-align: left;
+}
+
+.letter h2 {
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 16px;
+    color: #a51d4b;
+}
+
+.letter p {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 13px;
+}
+
+.signature {
+    font-weight: bold;
+    text-align: right;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope.open .heart-seal {
+    opacity: 0;
+}
+
+.envelope.open .letter {
+    height: 430px;
+    bottom: 0;
+    opacity: 1;
+    transform: translateY(-35px);
+    overflow-y: auto;
+    z-index: 4;
+}
+
+.envelope.open {
+    margin-bottom: 65px;
+}
+
+.open-btn {
+    background: linear-gradient(120deg, #8e1239, #e64c7c, #8e1239);
+    color: white;
+    font-size: 16px;
+    box-shadow: 0 0 15px #a51d4b;
+}
+
+.hint {
+    margin: 20px 0;
+    font-size: 13px;
+    color: var(--accent);
+}
+
+.footer {
+    margin-top: 30px;
+    font-size: 13px;
+}
+
+.heart {
+    position: fixed;
+    bottom: -40px;
+    color: #ff628e;
+    pointer-events: none;
+    z-index: 1;
+    animation: floatUp linear forwards;
+    text-shadow: 0 0 12px #ff467d;
+}
+
+.sparkle {
+    position: fixed;
+    color: #ffd7e2;
+    pointer-events: none;
+    animation: twinkle 2s infinite alternate;
+    z-index: 1;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.15); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh) rotate(30deg);
+        opacity: 0;
+    }
+}
+
+@keyframes twinkle {
+    from { opacity: 0.2; transform: scale(0.7); }
+    to {
+        opacity: 1;
+        transform: scale(1.3);
+        text-shadow: 0 0 15px white;
+    }
+}
+
+@media (max-width: 380px) {
+    .letter {
+        padding: 15px;
+    }
+
+    .envelope.open .letter {
+        height: 450px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>💗 Happy Teacher's Day 💗</h1>
+
+    <p class="subtitle">
+        A special message for our amazing<br>
+        <strong>Web Development Instructor</strong><br>
+        ❤️ Sir Randy Bello ❤️
+    </p>
+
+    <button class="theme-btn" onclick="toggleTheme()">
+        🌙 Switch Light / Dark Mode
+    </button>
+
+    <div class="envelope" id="envelope"
+         onclick="toggleLetter()"
+         role="button" tabindex="0"
+         aria-label="Open or close Teacher's Day letter">
+
+        <div class="envelope-body"></div>
+        <div class="flap"></div>
+        <div class="heart-seal">💖</div>
+
+        <article class="letter">
+            <h2>Dear Sir Randy Bello, 💌</h2>
+
+            <p>Happy Teacher's Day, Sir! ❤️</p>
+
+            <p>
+                Thank you for being a wonderful Web Development
+                instructor. Thank you for sharing your knowledge,
+                teaching us how to code, and guiding us as we learn
+                new skills.
+            </p>
+
+            <p>
+                Your patience, kindness, and dedication inspire us
+                to keep learning, even when our codes have errors.
+                You remind us that mistakes are part of learning
+                and that we should never give up.
+            </p>
+
+            <p>
+                We appreciate your hard work and the time you spend
+                helping us become better students and future
+                professionals in technology.
+            </p>
+
+            <p>
+                May you always be blessed with good health,
+                happiness, and success. Continue inspiring students
+                and sharing your passion for teaching.
+            </p>
+
+            <p>
+                Thank you for everything, Sir. You are more than
+                an instructor; you are an inspiration to us. 💗
+            </p>
+
+            <p class="signature">
+                With love and gratitude,<br>
+                Your WebDev Student 💖
+            </p>
+        </article>
+    </div>
+
+    <button class="open-btn" onclick="toggleLetter()">
+        💌 Open / Close Letter
+    </button>
+
+    <p class="hint" id="hint">
+        ✨ Tap the envelope to reveal your letter ✨
+    </p>
+
+    <div class="footer">
+        Made with ❤️, gratitude, and sparkling hearts<br>
+        <strong>Happy Teacher's Day, Sir Randy Bello!</strong>
+    </div>
+
+</div>
+
+<script>
+const envelope = document.getElementById("envelope");
+const hint = document.getElementById("hint");
+
+function toggleLetter() {
+    envelope.classList.toggle("open");
+
+    hint.textContent = envelope.classList.contains("open")
+        ? "💗 A heartfelt message just for you! 💗"
+        : "✨ Tap the envelope to reveal your letter ✨";
+}
+
+envelope.addEventListener("keydown", function(event) {
+    if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        toggleLetter();
+    }
+});
+
+function toggleTheme() {
+    document.body.classList.toggle("light");
+
+    document.querySelector(".theme-btn").textContent =
+        document.body.classList.contains("light")
+        ? "🌙 Switch to Dark Mode"
+        : "☀️ Switch to Light Mode";
+}
+
+// Floating sparkling hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+
+    const symbols = ["♥", "♡", "💗", "✨"];
+    heart.textContent =
+        symbols[Math.floor(Math.random() * symbols.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (12 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 10000);
+}
+
+setInterval(createHeart, 400);
+
+// Twinkling stars
+for (let i = 0; i < 35; i++) {
+    const star = document.createElement("span");
+    star.className = "sparkle";
+    star.textContent = "✦";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.fontSize = (8 + Math.random() * 12) + "px";
+    star.style.animationDelay = Math.random() * 3 + "s";
+
+    document.body.appendChild(star);
+}
+</script>
+
+</body>
+</html>
